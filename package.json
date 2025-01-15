@@ -1,0 +1,23 @@
+{
+  "name": "desafio_serverest_web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dumoisesDevops/desafio_serverest_web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dumoisesDevops/desafio_serverest_web/issues"
+  },
+  "homepage": "https://github.com/dumoisesDevops/desafio_serverest_web#readme",
+  "devDependencies": {
+    "cypress": "^13.17.0"
+  }
+}
