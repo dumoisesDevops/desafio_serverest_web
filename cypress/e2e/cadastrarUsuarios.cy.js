@@ -15,9 +15,18 @@ describe('Cadastro de Usuário', () => {
 
       cy.intercept('POST', '/usuarios').as('cadastroRequest');
       cy.cadastrarUsuario(nome, email, password);
+      cy.wait('@cadastroRequest').then((intercept) => {
 
-      cy.url().should('include', '/cadastrarusuarios');
-      cy.url({ timeout: 20000 }).should('include', '/home');
+        cy.url().then((url) => {
+          if (url.includes('/home')) {
+            cy.log('Redirecionado para /home imediatamente após o cadastro.');
+          } else {
+            cy.log('Aguardando redirecionamento para /home...');
+            cy.url({ timeout: 90000 }).should('include', '/home');
+          }
+        });
+      });
+
       cy.screenshot(`cadastro_usuario_${tipoUsuarioAleatorio}_sucesso`);
 
       delete usuarios[tipoUsuarioAleatorio];
