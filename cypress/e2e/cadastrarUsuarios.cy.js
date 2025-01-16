@@ -4,8 +4,6 @@ describe('Cadastro de Usuário', () => {
   });
 
   it('Deve cadastrar um usuário com dados válidos', () => {
-   // cy.intercept('GET', 'https://serverest.dev/usuarios').as('usuariosRequest');
-    //cy.intercept('GET', 'https://serverest.dev/produtos').as('produtosRequest');
 
     cy.fixture('usuarios.json').then((usuarios) => {
       const tiposUsuarios = Object.keys(usuarios);
@@ -17,10 +15,6 @@ describe('Cadastro de Usuário', () => {
       const password = usuario.password;
 
       cy.cadastrarUsuario(nome, email, password);
-
-
-    //  cy.wait('@usuariosRequest').its('response.statusCode').should('eq', 200);
-    //  cy.wait('@produtosRequest').its('response.statusCode').should('eq', 200);
 
       cy.url().should('eq', 'https://front.serverest.dev/home');
 
