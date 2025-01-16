@@ -4,29 +4,30 @@ describe('Cadastro de Usuário', () => {
   });
 
   it('Deve cadastrar um usuário com dados válidos', () => {
-
     cy.fixture('usuarios.json').then((usuarios) => {
       const tiposUsuarios = Object.keys(usuarios);
       const tipoUsuarioAleatorio = tiposUsuarios[Math.floor(Math.random() * tiposUsuarios.length)];
-
+  
       const usuario = usuarios[tipoUsuarioAleatorio];
       const nome = usuario.nome;
       const email = usuario.email;
       const password = usuario.password;
-
+  
+      cy.intercept('POST', '/cadastrarusuarios').as('cadastroRequest');
       cy.cadastrarUsuario(nome, email, password);
-
-      cy.url().should('eq', 'https://front.serverest.dev/home');
-
+  
+      cy.wait('@cadastroRequest'); // Espera a requisição POST ser completada
+  
+      cy.url().should('eq', 'https://front.serverest.dev/home'); // Verifica se foi redirecionado para a página home
+  
       cy.screenshot(`cadastro_usuario_${tipoUsuarioAleatorio}_sucesso`);
-
-
+  
       delete usuarios[tipoUsuarioAleatorio];
-
+  
       cy.writeFile('cypress/fixtures/usuarios.json', usuarios);
     });
   });
-
+  
 
   it('Não permite cadastrar um usuário com email que já existe na base', () => {
     cy.intercept('POST', 'https://serverest.dev/login').as('loginRequest');
