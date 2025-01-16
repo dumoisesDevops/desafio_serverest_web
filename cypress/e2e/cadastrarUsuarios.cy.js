@@ -44,12 +44,12 @@ describe('Cadastro de Usuário', () => {
   });
 
 
-  it.only('Não permite cadastrar usuário sem preencher campos obrigatórios', () => {
+  it('Não permite cadastrar usuário sem preencher campos obrigatórios', () => {
     cy.intercept('POST', 'https://serverest.dev/login').as('loginRequest');
     cy.intercept('GET', 'https://serverest.dev/usuarios').as('usuariosRequest');
     cy.intercept('GET', 'https://serverest.dev/produtos').as('produtosRequest');
 
-    cy.submeterCadastro()
+    cy.submeterCadastro();
 
 
     cy.contains('Nome é obrigatório').should('be.visible');

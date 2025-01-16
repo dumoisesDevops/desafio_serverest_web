@@ -18,5 +18,6 @@ import './commands'
 import 'cypress-plugin-api'
 import '@shelex/cypress-allure-plugin';
 require('@shelex/cypress-allure-plugin');
+
 // Alternatively you can use CommonJS syntax:
-// require('./commands')
+// require('./commands').github/workflows/cypress.yml.github/workflows/cypress.yml

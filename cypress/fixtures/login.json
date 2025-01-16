@@ -1,0 +1,12 @@
+
+{
+    "loginValido": {
+      "email": "eduardo.moisesqa@hotmail.com",
+      "password": "370750"
+    },
+    "loginInvalido": {
+      "email": "invaliduser@example.com",
+      "password": "invalidpassword"
+    }
+  }
+  
