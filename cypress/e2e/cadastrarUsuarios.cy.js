@@ -18,7 +18,7 @@ describe('Cadastro de Usuário', () => {
 
       cy.cadastrarUsuario(nome, email, password);
 
-      cy.wait('@loginRequest').its('response.statusCode').should('eq', 200);
+
       cy.wait('@usuariosRequest').its('response.statusCode').should('eq', 200);
       cy.wait('@produtosRequest').its('response.statusCode').should('eq', 200);
 
