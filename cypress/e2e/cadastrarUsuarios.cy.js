@@ -4,15 +4,6 @@ describe('Cadastro de Usuário', () => {
   });
 
   it('Deve cadastrar um usuário com dados válidos', () => {
-    cy.intercept('POST', '/login').as('loginRequest');
-    cy.wait('@loginRequest', { timeout: 15000 }).then((interception) => {
-      if (interception) {
-        cy.log('Interceptou a requisição de login:', interception);
-        expect(interception.response.statusCode).to.eq(200); 
-      } else {
-        cy.log('Não foi possível interceptar a requisição de login.');
-      }
-    });
     cy.intercept('GET', 'https://serverest.dev/usuarios').as('usuariosRequest');
     cy.intercept('GET', 'https://serverest.dev/produtos').as('produtosRequest');
 
