@@ -46,4 +46,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact_name }}  # Agora, acessamos corretamente a variável de ambiente
-          path: allure-report  # O relatório gerado estará na pasta allure-report
+          path: allure-report  # O relatório gerado estará na pasta allure-repor
