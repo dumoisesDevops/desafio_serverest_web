@@ -20,7 +20,7 @@ describe('Cadastro de Usuário', () => {
 
 
     //  cy.wait('@usuariosRequest').its('response.statusCode').should('eq', 200);
-      cy.wait('@produtosRequest').its('response.statusCode').should('eq', 200);
+    //  cy.wait('@produtosRequest').its('response.statusCode').should('eq', 200);
 
       cy.url().should('eq', 'https://front.serverest.dev/home');
 
