@@ -3,13 +3,12 @@ name: End-to-end API tests  # Nome do pipeline
 on: push  # O pipeline será acionado em um push
 
 jobs:
-  api-tests:
-    runs-on: ubuntu-24.04 # Usando uma imagem do Ubuntu para rodar os testes de API
+  chrome-tests:
+    runs-on: ubuntu-24.04  # Usando uma imagem do Ubuntu para rodar os testes de API
 
     strategy:
       matrix:
         test-file: [login.cy.js, cadastrarUsuarios.cy.js]  # Arquivos de teste a serem executados em paralelo
-        browser: [chrome, firefox]  # Navegadores em que os testes serão rodados em paralelo
 
     steps:
       - name: Checkout code  # Faz o checkout do repositório
@@ -23,27 +22,63 @@ jobs:
       - name: Install dependencies  # Instala as dependências do projeto
         run: npm install
 
-      - name: Run tests on ${{ matrix.browser }} with ${{ matrix.test-file }}  # Roda os testes no navegador e arquivo específico
-        run: |
-          if [ "${{ matrix.browser }}" == "firefox" ]; then
-            npx cypress run --browser firefox --headless --spec "cypress/e2e/${{ matrix.test-file }}"  # Firefox
-          else
-            npx cypress run --browser chrome --headless --no-sandbox --spec "cypress/e2e/${{ matrix.test-file }}"  # Chrome
-          fi
+      - name: Run tests on Chrome with ${{ matrix.test-file }}  # Roda os testes no Chrome
+        run: npx cypress run --browser chrome --headless --no-sandbox --spec "cypress/e2e/${{ matrix.test-file }}"  # Chrome
 
       - name: Generate Allure report  # Gera o relatório Allure
         run: |
           npm run test  # Executa os testes com o Allure ativado
           npm run allure:generate  # Gera o relatório Allure na pasta allure-report
 
-      - name: Set artifact name  # Passo para definir o nome do artefato
-        id: set_name
+      - name: Set artifact name for Chrome  # Passo para definir o nome do artefato para o Chrome
+        id: set_name_chrome
         run: |
-          ARTIFACT_NAME="${{ matrix.test-file }}-${{ matrix.browser }}"  # Adiciona o nome do navegador ao artefato
+          ARTIFACT_NAME="${{ matrix.test-file }}-chrome"  # Nome do artefato para o Chrome
           echo "artifact_name=$ARTIFACT_NAME" >> $GITHUB_ENV  # Salva a variável de ambiente
 
       - name: Upload Allure report as Artifact  # Faz o upload do relatório Allure como artefato
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact_name }}  # Agora, acessamos corretamente a variável de ambiente
-          path: allure-report  # O relatório gerado estará na pasta allure-repor
+          path: allure-report  # O relatório gerado estará na pasta allure-report
+
+  firefox-tests:
+    runs-on: ubuntu-24.04  # Usando uma imagem do Ubuntu para rodar os testes de API
+
+    needs: chrome-tests  # Garante que os testes no Chrome sejam executados primeiro
+
+    strategy:
+      matrix:
+        test-file: [login.cy.js, cadastrarUsuarios.cy.js]  # Arquivos de teste a serem executados em paralelo
+
+    steps:
+      - name: Checkout code  # Faz o checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js  # Configura Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Versão do Node.js a ser usada
+
+      - name: Install dependencies  # Instala as dependências do projeto
+        run: npm install
+
+      - name: Run tests on Firefox with ${{ matrix.test-file }}  # Roda os testes no Firefox
+        run: npx cypress run --browser firefox --headless --spec "cypress/e2e/${{ matrix.test-file }}"  # Firefox
+
+      - name: Generate Allure report  # Gera o relatório Allure
+        run: |
+          npm run test  # Executa os testes com o Allure ativado
+          npm run allure:generate  # Gera o relatório Allure na pasta allure-report
+
+      - name: Set artifact name for Firefox  # Passo para definir o nome do artefato para o Firefox
+        id: set_name_firefox
+        run: |
+          ARTIFACT_NAME="${{ matrix.test-file }}-firefox"  # Nome do artefato para o Firefox
+          echo "artifact_name=$ARTIFACT_NAME" >> $GITHUB_ENV  # Salva a variável de ambiente
+
+      - name: Upload Allure report as Artifact  # Faz o upload do relatório Allure como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.artifact_name }}  # Agora, acessamos corretamente a variável de ambiente
+          path: allure-report  # O relatório gerado estará na pasta allure-report
