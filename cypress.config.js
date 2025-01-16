@@ -3,33 +3,31 @@ const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
 module.exports = defineConfig({
   e2e: {
-    specPattern: 'cypress/e2e/**/*.cy.js',  // Define o padrão dos testes
-    baseUrl: 'https://front.serverest.dev/',  // URL base do site para os testes
-    viewportWidth: 1280,  // Largura da tela para os testes
-    viewportHeight: 720,  // Altura da tela para os testes
-
+    specPattern: 'cypress/e2e/**/*.cy.js',
+    baseUrl: 'https://front.serverest.dev/',
+    viewportWidth: 1280,
+    viewportHeight: 720,
     setupNodeEvents(on, config) {
-      // Chama o plugin do Allure para gerar os relatórios
+      // Adiciona o plugin Allure
       allureWriter(on, config);
-      // Adiciona o plugin do Allure
-      require('@shelex/cypress-allure-plugin').addPlugin(on, config);
 
-      // Configuração personalizada para o navegador Firefox
-      if (config.browser.name === 'firefox') {
+      // Verifica se a propriedade 'browser' está disponível no config
+      const browserName = process.env.CYPRESS_BROWSER || config.browser?.name;
+
+      // Configuração personalizada para o Firefox
+      if (browserName === 'firefox') {
         config.firefoxGcInterval = 1000;
       }
 
-      // Configuração para navegadores com opções específicas
-      if (config.browser.name === 'chrome') {
+      // Configuração para o Chrome com argumentos personalizados
+      if (browserName === 'chrome') {
         config.chromeOptions = {
           args: ['--headless', '--no-sandbox'],
         };
       }
 
-      // Retorna a configuração do Cypress com as alterações aplicadas
       return config;
     },
-
     env: {
       allureResultsPath: 'cypress/allure-results',  // Caminho dos resultados do Allure
     },
