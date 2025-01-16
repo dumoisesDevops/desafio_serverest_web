@@ -17,6 +17,7 @@ module.exports = defineConfig({
       // Configuração personalizada para o Firefox
       if (browserName === 'firefox') {
         config.firefoxGcInterval = 1000;
+        config.defaultCommandTimeout = 10000; // Aumenta o timeout para o Firefox
       }
 
       // Configuração para o Chrome com argumentos personalizados
