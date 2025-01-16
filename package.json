@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/dumoisesDevops/desafio_serverest_web#readme",
   "devDependencies": {
-    "@cypress/webpack-preprocessor": "^6.0.2",
     "@shelex/cypress-allure-plugin": "^2.40.2",
     "allure-commandline": "^2.32.0",
     "chance": "^1.1.12",
@@ -31,6 +30,6 @@
     "cypress-plugin-api": "^2.11.2",
     "junit-report-merger": "^6.0.2",
     "mochawesome-merge": "^4.3.0",
-    "webpack": "^5.97.1"
+    "@cypress/webpack-preprocessor": "^5.0.0"
   }
 }
