@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Run tests on Chrome with ${{ matrix.test-file }}  # Roda os testes no Chrome
-        run: npx cypress run --browser chrome --headless --no-sandbox --spec "cypress/e2e/${{ matrix.test-file }}"  # Chrome
+        run: npx cypress run --browser chrome --headless --spec "cypress/e2e/${{ matrix.test-file }}"  # Chrome
 
       - name: Generate Allure report  # Gera o relatório Allure
         run: |
