@@ -1,92 +1,40 @@
-{
-  "usuario_teste_21": {
-    "nome": "Test User 21",
-    "email": "test21@user.com",
-    "password": "senha130"
+[
+  {
+    "nome": "Lea",
+    "email": "Bulah_Skiles@hotmail.com",
+    "password": "251NyKitgXeKf0e",
+    "administrador": "true"
   },
-  "usuario_teste_22": {
-    "nome": "Test User 22",
-    "email": "test22@user.com",
-    "password": "senha131"
+  null,
+  {
+    "nome": "Jody",
+    "email": "Reva_Bednar@hotmail.com",
+    "password": "H7u5bUsSZb5jSjR",
+    "administrador": "true"
   },
-  "usuario_teste_23": {
-    "nome": "Test User 23",
-    "email": "test23@user.com",
-    "password": "senha132"
+  {
+    "nome": "Frieda",
+    "email": "Nat.Homenick46@hotmail.com",
+    "password": "5IxbMilONtZ4Erk",
+    "administrador": "false"
   },
-  "usuario_teste_24": {
-    "nome": "Test User 24",
-    "email": "test24@user.com",
-    "password": "senha133"
+  {
+    "nome": "Petra",
+    "email": "Jamarcus_Wilkinson-Vandervort48@hotmail.com",
+    "password": "AZ9GmPTpegz481i",
+    "administrador": "true"
   },
-  "usuario_teste_26": {
-    "nome": "Test User 26",
-    "email": "test26@user.com",
-    "password": "senha135"
+  {
+    "nome": "Roslyn",
+    "email": "Jayson.Turcotte48@gmail.com",
+    "password": "hOaxhcTkXeCr3of",
+    "administrador": "false"
   },
-  "usuario_teste_27": {
-    "nome": "Test User 27",
-    "email": "test27@user.com",
-    "password": "senha136"
+  {
+    "nome": "Arlie",
+    "email": "Mireille.Bins72@gmail.com",
+    "password": "D59pQ0VdlsWYVD2",
+    "administrador": "true"
   },
-  "usuario_teste_28": {
-    "nome": "Test User 28",
-    "email": "test28@user.com",
-    "password": "senha137"
-  },
-  "usuario_teste_29": {
-    "nome": "Test User 29",
-    "email": "test29@user.com",
-    "password": "senha138"
-  },
-  "usuario_teste_30": {
-    "nome": "Test User 30",
-    "email": "test30@user.com",
-    "password": "senha139"
-  },
-  "usuario_teste_31": {
-    "nome": "Test User 31",
-    "email": "test31@user.com",
-    "password": "senha140"
-  },
-  "usuario_teste_32": {
-    "nome": "Test User 32",
-    "email": "test32@user.com",
-    "password": "senha141"
-  },
-  "usuario_teste_33": {
-    "nome": "Test User 33",
-    "email": "test33@user.com",
-    "password": "senha142"
-  },
-  "usuario_teste_34": {
-    "nome": "Test User 34",
-    "email": "test34@user.com",
-    "password": "senha143"
-  },
-  "usuario_teste_35": {
-    "nome": "Test User 35",
-    "email": "test35@user.com",
-    "password": "senha144"
-  },
-  "usuario_teste_36": {
-    "nome": "Test User 36",
-    "email": "test36@user.com",
-    "password": "senha145"
-  },
-  "usuario_teste_37": {
-    "nome": "Test User 37",
-    "email": "test37@user.com",
-    "password": "senha146"
-  },
-  "usuario_teste_38": {
-    "nome": "Test User 38",
-    "email": "test38@user.com",
-    "password": "senha147"
-  },
-  "usuario_teste_40": {
-    "nome": "Test User 40",
-    "email": "test40@user.com",
-    "password": "senha149"
-  }
-}
+  null
+]

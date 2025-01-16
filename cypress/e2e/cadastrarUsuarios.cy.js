@@ -13,21 +13,27 @@ describe('Cadastro de Usuário', () => {
       const email = usuario.email;
       const password = usuario.password;
   
-      cy.intercept('POST', '/cadastrarusuarios').as('cadastroRequest');
+      // Intercepta a requisição de cadastro
+      cy.intercept('POST', '/usuarios').as('cadastroRequest');
+  
+      // Executa o cadastro do usuário
       cy.cadastrarUsuario(nome, email, password);
   
-      cy.wait('@cadastroRequest'); // Espera a requisição POST ser completada
+      // Verifica se a URL foi alterada corretamente após o cadastro
+      cy.url().should('eq', 'https://front.serverest.dev/home');
   
-      cy.url().should('eq', 'https://front.serverest.dev/home'); // Verifica se foi redirecionado para a página home
-  
+      // Captura um screenshot do sucesso do cadastro
       cy.screenshot(`cadastro_usuario_${tipoUsuarioAleatorio}_sucesso`);
   
+      // Remove o usuário utilizado do fixture
       delete usuarios[tipoUsuarioAleatorio];
   
+      // Atualiza o arquivo de fixture
       cy.writeFile('cypress/fixtures/usuarios.json', usuarios);
     });
   });
   
+
 
   it('Não permite cadastrar um usuário com email que já existe na base', () => {
     cy.intercept('POST', 'https://serverest.dev/login').as('loginRequest');
