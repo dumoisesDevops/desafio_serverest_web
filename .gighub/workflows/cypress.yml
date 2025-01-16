@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        browser: [chrome, firefox]  # Definir os navegadores para rodar os testes em paralelo.
+        browser: [chrome, firefox]  
         
     steps:
       - name: Checkout repository
@@ -22,7 +22,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Altere para a versão de Node.js que você utiliza.
+          node-version: '14'  
 
       - name: Install dependencies
         run: |
