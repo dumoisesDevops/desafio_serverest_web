@@ -32,12 +32,10 @@
     "babel-loader": "^9.2.1",
     "chance": "^1.1.12",
     "cypress": "^13.17.0",
+    "cypress-plugin-api": "^2.11.2",
     "faker": "^6.6.6",
     "junit-report-merger": "^6.0.2",
     "mochawesome-merge": "^4.3.0",
     "webpack": "^5.97.1"
-  },
-  "dependencies": {
-    "cypress-plugin-api": "^2.11.1"
   }
 }
