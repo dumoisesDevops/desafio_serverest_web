@@ -7,6 +7,7 @@ module.exports = defineConfig({
     baseUrl: 'https://front.serverest.dev/',
     viewportWidth: 1280,
     viewportHeight: 720,
+    defaultCommandTimeout: 15000, // Aumenta o timeout padrão para 15 segundos para todos os navegadores
     setupNodeEvents(on, config) {
       // Adiciona o plugin Allure
       allureWriter(on, config);
@@ -17,7 +18,6 @@ module.exports = defineConfig({
       // Configuração personalizada para o Firefox
       if (browserName === 'firefox') {
         config.firefoxGcInterval = 1000;
-        config.defaultCommandTimeout = 10000; // Aumenta o timeout para o Firefox
       }
 
       // Configuração para o Chrome com argumentos personalizados

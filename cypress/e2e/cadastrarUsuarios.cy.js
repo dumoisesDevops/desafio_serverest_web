@@ -4,7 +4,7 @@ describe('Cadastro de Usuário', () => {
   });
 
   it('Deve cadastrar um usuário com dados válidos', () => {
-    cy.intercept('POST', 'https://serverest.dev/login', { statusCode: 200, body: { success: true } }).as('loginRequest');
+    cy.intercept('POST', 'https://serverest.dev/login').as('loginRequest');
     cy.intercept('GET', 'https://serverest.dev/usuarios').as('usuariosRequest');
     cy.intercept('GET', 'https://serverest.dev/produtos').as('produtosRequest');
 
