@@ -24,7 +24,12 @@ jobs:
         run: npm install
 
       - name: Run tests on ${{ matrix.browser }} with ${{ matrix.test-file }}  # Roda os testes no navegador e arquivo específico
-        run: npx cypress run --browser ${{ matrix.browser }} --headless --no-sandbox --spec "cypress/e2e/${{ matrix.test-file }}"  # Executa os testes no navegador e arquivo especificados
+        run: |
+          if [ "${{ matrix.browser }}" == "firefox" ]; then
+            npx cypress run --browser firefox --headless --spec "cypress/e2e/${{ matrix.test-file }}"  # Firefox
+          else
+            npx cypress run --browser chrome --headless --no-sandbox --spec "cypress/e2e/${{ matrix.test-file }}"  # Chrome
+          fi
 
       - name: Generate Allure report  # Gera o relatório Allure
         run: |
